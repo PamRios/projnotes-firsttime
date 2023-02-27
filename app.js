@@ -19,12 +19,23 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+ //USE == REGISTERING MIDDLEWARE
+//app es una instancia de express
+app.use(logger('dev')); // log all received request //constructores de funciones -> generan funciones (req, res)
+/*app.use((req, res, next)=>{
+  //res.send("PÁGINA FUERA DE SERVICCIO");
+  console.log("A request has been / Se ha recibido una petición");
+  next();
+}); // no se ejecutan los demás middleware por que el primero ya contesto, los middleware sí llevan orden de ejecución
+app.use((req, res, next)=>{
+  console.log(`🔑 IP: ${req.ip}`);
+  next();
+})*/
+app.use(express.json());  //Parse request data into json
+app.use(express.urlencoded({ extended: false })); //decode url info
+app.use(cookieParser()); //Parse client cookies into json
+//Set up the static file server
+app.use(express.static(/*ruta de los estaticos*/path.join(__dirname, 'public'))); //path para que sirva en diferentes
 
 //Registering routes
 app.use('/', indexRouter);
