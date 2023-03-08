@@ -1,7 +1,9 @@
-let express = require('express'); //importing express library
-
+//let express = require('express'); //importing express library
+import express from 'express';
 //creating a router instance
-let router = express.Router();
+//let router = express.Router();
+const {Router} = express;
+const router = Router();
 
 //creating the route 
 router.get('/author', (req, res)=>/*Callback */{ /*se ejecuta hasta que alguien haga una petición a /author */
@@ -14,7 +16,8 @@ res.json({
 });
 
 //Exporting the router
-module.exports = router;
+//module.exports = router;
+export default router;
 /*
 function(obj1, obj2, obj3 maybe
 function(petición, respuesta)

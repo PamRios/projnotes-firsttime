@@ -6,13 +6,15 @@
 
 // Se importa la lógica del servidor
 //Require importa< código de otro archivo Server login
-let app = require('../app');
+import app from '../app';
+//import app from "../app";
 //se importa una dependencia externa -> bibliotecas externas 
 // debug -> mandar a la salida de la consola lo que está pasando (mensajes log)
-let debug = require('debug')('projnotes');
+import Debug from 'debug';
+const debug = Debug('projnotes');
 /* biblioteca interna del nucleo de node / modulo que permite la comunicaciones con un cliente vía 
 el protocolo http facilita no  tener que programnar todo el servidor*/ 
-let http = require('http'); 
+import http from 'http'; 
 
 /**
  * Get port from environment and store in Express.
@@ -22,7 +24,7 @@ let http = require('http');
 process.env.PORT -> objeto que simboliza el proceso de fabricacion
 envi -> enviroment -> variables de entorno ->  (entorno == S.O.)*/
 
-let port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 // Store the port in the app
 app.set('port', port);
 
@@ -30,7 +32,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-let server = http.createServer(app); //(req, res) => {acciones}
+const server = http.createServer(app); //(req, res) => {acciones}
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -46,7 +48,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  let port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -70,18 +72,18 @@ function onError (error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -94,10 +96,10 @@ function onError (error) {
  */
 
 function onListening() {
-  let addr = server.address();
-  let bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  const addr = server.address();
+  const bind = typeof addr === 'string'
+    ? `pipe ${addr}`
+    : `port ${addr.port}`;
   // debug(`URL DE APP ${process.env.APP_URL}`); //interpolación ${} backtics
   debug(`✨✨ Listening on ${process.env.APP_URL}:${addr.port} ✨✨`);
   

@@ -1,20 +1,20 @@
 //helps  to handle http errors
-let createError = require('http-errors');
+import createError from 'http-errors';
 // import the Express Librari
-let express = require('express');
+import express from 'express';
 // is a Core-Node library to manage systems paths
-let path = require('path');
+import path from'path';
 // helps to parse client cookies
-let cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser';
 //library to log  http comunication
-let logger = require('morgan');
+import logger from 'morgan';
 
 //importing sub routes
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
-let apiRouter = require('./routes/api');
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
+import apiRouter from './routes/api';
 
-let app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -58,4 +58,5 @@ app.use ((err, req, res, next) =>{
   res.render('error');
 });
 
-module.exports = app;
+//module.exports = app;
+export default app;

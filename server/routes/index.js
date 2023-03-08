@@ -1,6 +1,8 @@
-let express = require('express');
-const render  = require('../app');
-let router = express.Router(); 
+import express from 'express';
+const {Router} = express;
+/*const render  = require('../app');
+let router = express.Router(); */
+const router = Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -22,6 +24,7 @@ router.get('/author', (req, res)=>{
 
 });
 
-module.exports = router;
+//module.exports = router;
+export default router;
 
 // ('index', { title: 'Express' }) view model html puro
