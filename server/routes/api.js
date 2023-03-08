@@ -1,6 +1,7 @@
-var express = require('express'); //importing express library
+let express = require('express'); //importing express library
+
 //creating a router instance
-var router = express.Router();
+let router = express.Router();
 
 //creating the route 
 router.get('/author', (req, res)=>/*Callback */{ /*se ejecuta hasta que alguien haga una petición a /author */

@@ -1,9 +1,9 @@
-var express = require('express');
+let express = require('express');
 const render  = require('../app');
-var router = express.Router();
+let router = express.Router(); 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   let iconSet=["✨", "🎃", "🎨"];
   let icon = iconSet[Math.floor(Math.random()*3)];
   res.render('index', { title: 'DWPII-2023A', icon}); //render permite renderizar una plantilla los datos se especifican en formato json

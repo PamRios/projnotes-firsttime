@@ -6,13 +6,13 @@
 
 // Se importa la lógica del servidor
 //Require importa< código de otro archivo Server login
-var app = require('../app');
+let app = require('../app');
 //se importa una dependencia externa -> bibliotecas externas 
 // debug -> mandar a la salida de la consola lo que está pasando (mensajes log)
-var debug = require('debug')('projnotes');
+let debug = require('debug')('projnotes');
 /* biblioteca interna del nucleo de node / modulo que permite la comunicaciones con un cliente vía 
 el protocolo http facilita no  tener que programnar todo el servidor*/ 
-var http = require('http'); 
+let http = require('http'); 
 
 /**
  * Get port from environment and store in Express.
@@ -22,7 +22,7 @@ var http = require('http');
 process.env.PORT -> objeto que simboliza el proceso de fabricacion
 envi -> enviroment -> variables de entorno ->  (entorno == S.O.)*/
 
-var port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || '3000');
 // Store the port in the app
 app.set('port', port);
 
@@ -30,7 +30,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app); //(req, res) => {acciones}
+let server = http.createServer(app); //(req, res) => {acciones}
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -46,7 +46,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  let port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -65,12 +65,12 @@ function normalizePort(val) {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError (error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  let bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -94,8 +94,8 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  let addr = server.address();
+  let bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   // debug(`URL DE APP ${process.env.APP_URL}`); //interpolación ${} backtics

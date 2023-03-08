@@ -1,20 +1,20 @@
 //helps  to handle http errors
-var createError = require('http-errors');
+let createError = require('http-errors');
 // import the Express Librari
-var express = require('express');
+let express = require('express');
 // is a Core-Node library to manage systems paths
-var path = require('path');
+let path = require('path');
 // helps to parse client cookies
-var cookieParser = require('cookie-parser');
+let cookieParser = require('cookie-parser');
 //library to log  http comunication
-var logger = require('morgan');
+let logger = require('morgan');
 
 //importing sub routes
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var apiRouter = require('./routes/api');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+let apiRouter = require('./routes/api');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,12 +43,12 @@ app.use/*metodo*/('/users', usersRouter); //Use permite definir un tramo de ruta
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) =>{
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use ((err, req, res, next) =>{
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
