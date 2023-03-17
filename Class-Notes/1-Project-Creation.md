@@ -1,19 +1,19 @@
-# Introducción
-En la presente etapa se muestra un resumen de los pasos seguidos para la creación del proyecto y el repositorio en GitHub.
+# Introduction
+This step shows a summary of the steps followed for the creation of the project and the repository in GitHub.
 
 # Methods
 
-Para la creación de este proyecto se usan como base **NodeJS, Express, JavaScript** y por supuesto los diferentes elementos generales para realizar proyectos web (HTML, CSS, etc.), el presente trabajo tiene una base empirica por lo que durante su desarrollo las fuentes de consulta, consejos, recomendaciones, fueron frecuentemente cambiadas o actualizadas.
+For the creation of this project are used as a basis **NodeJS, Express, JavaScript** and of course the different general elements for web projects (HTML, CSS, etc.), this work has an empirical basis so that during its development the sources of consultation, advice, recommendations, were frequently changed or updated.
 
 # Results
 
-- Inicialmente es necesario tener, o en su defecto, crear una cuenta en GithHub.
-- Lo siguiente es seleccionar que tipo de proyecto y que herramientas se usarán para dicho proyecto.
-- Ahora se crea un nuevo Codespace
+- Initially it is necessary to have or, failing that, to create an account in GithHub.
+- The next thing to do is to select what type of project and what tools will be used for that project.
+- Now a new Codespace is created
 
 # Discussions
 
-Iniciemos diciendo que este proceso de trabajar directo en GitHUb no solo permite una mayor seguridad, sino también una mayor fluidez a la hora de trabajar, ya que al crear un repositorio dedicado u orientado hacia un lenguaje o modulo, contiene las herramientas básicas necesarias para evitar que el desarrollador de manera manual cree una a una las carpetas, y los archivos iniciales, es bien sabido que hacer cosas desde cero tiene un gran impacto en el aprendizaje, sin embargo, el automatizar y hacer más sencillas las tareas más básicas contiene también su gran ayuda para enfrentarse a la realidad que conlleva la vida de un profesionista, en este caso de un desarrollador Full Stack.
+Let's start by saying that this process of working directly in GitHUb not only allows greater security, but also greater fluidity when working, since by creating a repository dedicated or oriented to a language or module, it contains the basic tools necessary to avoid the developer to manually create folders one by one, It is well known that doing things from scratch has a great impact on learning, however, automating and simplifying the most basic tasks also contains a great help to face the reality of the life of a professional, in this case of a Full Stack developer.
 
-# Referencias
-Para esta primera etapa las únicas referencias usadas son las clases tomadas acerca del curso Desarrollo en Pila Completa II (tomado de manera presencial) y las notas de clase proporcionadas por el titular del curso.
+# References
+For this first stage the only references used are the lectures taken about the Full Stack Development II course (taken face-to-face) and the lecture notes provided by the course holder.
