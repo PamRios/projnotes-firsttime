@@ -44,7 +44,7 @@ if(nodeEnviroment === 'development'){
   const  bundle = webpack(webpackConfig);
   //Enabling the express instances
   app.use( WebpackDevMiddleware(bundle, {
-    publicPath: webpackConfig.output.path
+    publicPath: webpackConfig.output.publicPath
   }) );
   //Enabling the webpack HMR
   app.use(WebpackHotMiddleware(bundle));
@@ -72,7 +72,7 @@ app.use(express.json());  //Parse request data into json
 app.use(express.urlencoded({ extended: false })); //decode url info
 app.use(cookieParser()); //Parse client cookies into json
 //Set up the static file server
-app.use(express.static(/*ruta de los estaticos*/path.join(__dirname, 'public'))); //path para que sirva en diferentes
+app.use(express.static(/*ruta de los estaticos*/path.join(__dirname, '../public'))); //path para que sirva en diferentes
 
 //Registering routes
 app.use('/', indexRouter);

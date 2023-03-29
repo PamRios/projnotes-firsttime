@@ -4,7 +4,8 @@ module.exports =  {
     entry: "./client/index.js",
     output:{
         path: path.resolve(__dirname, "public"),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: '/' //marca la parte de la url con la que accederá a los archivos publicos
     },
 
     devServer: {
