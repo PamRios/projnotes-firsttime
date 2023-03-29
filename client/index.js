@@ -1,7 +1,9 @@
 import './styles/style.css'
-console.log(" 🎉 Estilos cargados correctamente 🎉");
+console.log(' 🎉 Estilos cargados correctamente 🎉');
 
-let show = (msg="No message given") => {
+
+/*
+let show = (msg='No message given') => {
     console.log(msg)
 }
 
@@ -16,9 +18,9 @@ function resolveAfter2Seconds(){
 }
 
 async function asyncCall(){
-    console.log("Calling");
+    console.log('Calling');
     const result = await resolveAfter2Seconds();
     console.log(result);
 }
 
-asyncCall();
+asyncCall();*/
