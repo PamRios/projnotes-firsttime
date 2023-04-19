@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESlintPlugin = require("eslint-webpack-plugin");
 module.exports =  {
     entry: "./client/index.js",
     output:{
@@ -47,7 +48,9 @@ module.exports =  {
             }
         ]
     },
-    plugins: [new MiniCssExtractPlugin({
-        filename: 'style/app.css'
-    })]
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'style/app.css'
+        }),
+        new ESlintPlugin()]
 }
