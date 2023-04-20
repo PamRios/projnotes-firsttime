@@ -10,6 +10,9 @@
         "es6":true,
         "node":true,
         "browser": true
+    },
+    "settings": {
+        "import/resolver":{"babel-module":{}}
     }
 
 }
