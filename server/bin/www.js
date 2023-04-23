@@ -97,9 +97,9 @@ function onError (error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === 'string'
+  /* const bind = typeof addr === 'string'
     ? `pipe ${addr}`
-    : `port ${addr.port}`;
+    : `port ${addr.port}`; */
   // debug(`URL DE APP ${process.env.APP_URL}`); //interpolación ${} backtics
   debug(`✨✨ Listening on ${process.env.APP_URL}:${addr.port} ✨✨`);
   
