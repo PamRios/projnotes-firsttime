@@ -9,13 +9,16 @@
 // import app from "../app";
 // se importa una dependencia externa -> bibliotecas externas
 // debug -> mandar a la salida de la consola lo que está pasando (mensajes log)
-import Debug from 'debug';
+// import Debug from 'debug';
 /* biblioteca interna del nucleo de node / modulo que permite la comunicaciones con un cliente vía
 el protocolo http facilita no  tener que programnar todo el servidor */
 import http from 'http';
 import app from '../app';
 
-const debug = Debug('projnotes');
+// Importing winston logger
+import log from '../config/winston';
+
+// const debug = Debug('projnotes');
 
 /**
  * Get port from environment and store in Express.
@@ -25,31 +28,18 @@ const debug = Debug('projnotes');
 process.env.PORT -> objeto que simboliza el proceso de fabricacion
 envi -> enviroment -> variables de entorno ->  (entorno == S.O.) */
 
-let port = normalizePort(process.env.PORT || '3000');
-// Store the port in the app
-app.set('port', port);
-
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app); // (req, res) => {acciones}
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-// Specifying the port where the server would be listening
-server.listen(port);
-// Attaching callbacks to events
-server.on('error', onError);
-server.on('listening', onListening);
+// (req, res) => {acciones}
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort(val) {
-  port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (Number.isNaN(port)) {
     // named pipe
@@ -64,6 +54,13 @@ function normalizePort(val) {
   return false;
 }
 
+const port = normalizePort(process.env.PORT || '3000');
+// Store the port in the app
+app.set('port', port);
+
+log.info('The server is created from the express instance');
+
+const server = http.createServer(app);
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -78,11 +75,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
+      log.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
+      log.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -100,5 +97,14 @@ function onListening() {
     ? `pipe ${addr}`
     : `port ${addr.port}`; */
   // debug(`URL DE APP ${process.env.APP_URL}`); //interpolación ${} backtics
-  debug(`✨✨ Listening on ${process.env.APP_URL}:${addr.port} ✨✨`);
+  log.info(`✨✨ Listening on ${process.env.APP_URL}:${addr.port} ✨✨`);
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+// Specifying the port where the server would be listening
+server.listen(port);
+// Attaching callbacks to events
+server.on('error', onError);
+server.on('listening', onListening);

@@ -7,7 +7,7 @@ import path from 'path';
 // helps to parse client cookies
 import cookieParser from 'cookie-parser';
 // library to log  http comunication
-import logger from 'morgan';
+import morgan from 'morgan';
 
 // importing sub routes
 import indexRouter from '@server/routes/index';
@@ -21,6 +21,12 @@ import WebpackHotMiddleware from 'webpack-hot-middleware';
 
 // importing  webpack configuration
 import webpackConfig from '../webpack.dev.config';
+
+import log from './config/winston';
+
+// creando variable del directorio raíz
+// eslint-disable-next-line
+global["__rootdir"] = path.resolve(process.cwd());
 
 const app = express();
 
@@ -60,7 +66,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 // USE == REGISTERING MIDDLEWARE
 // app es una instancia de express
-app.use(logger('dev')); // log all received request //constructores de funciones -> generan funciones (req, res)
+app.use(morgan('dev', { stream: log.stream })); // log all received request //constructores de funciones -> generan funciones (req, res)
 /* app.use((req, res, next)=>{
   //res.send("PÁGINA FUERA DE SERVICCIO");
   console.log("A request has been / Se ha recibido una petición");
@@ -87,6 +93,7 @@ app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  log.info(`404 Pagina no encontrada ${req.method} ${req.originalUrl}`);
   next(createError(404));
 });
 
@@ -98,6 +105,7 @@ app.use((err, req, res) => {
 
   // render the error page
   res.status(err.status || 500);
+  log.error(`${err.status || 500} - ${err.message}`);
   res.render('error');
 });
 
