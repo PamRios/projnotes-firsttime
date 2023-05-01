@@ -1,6 +1,14 @@
-import './styles/style.css';
-
+/* eslint-disable no-console */
+// import './styles/style.css';
+/* eslint-disable */
+// importando estilos de Materialize CSS
+import 'materialize-css/dist/css/materialize.css';
+// importando scripts de Materialize
+import 'materialize-css/dist/js/materialize';
 console.log(' 🎉 Estilos cargados correctamente 🎉');
+/* eslint-enable */
+// inicializando scripts de materialize para interactividad
+M.AutoInit();
 
 /*
 let show = (msg='No message given') => {
