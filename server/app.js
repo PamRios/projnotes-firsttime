@@ -19,6 +19,9 @@ import webpack from 'webpack';
 import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebpackHotMiddleware from 'webpack-hot-middleware';
 
+// Importando el configurador del motor de plantillas
+import configTemplateEngine from './config/templateEngine';
+
 // importing  webpack configuration
 import webpackConfig from '../webpack.dev.config';
 
@@ -62,8 +65,12 @@ if (nodeEnviroment === 'development') {
 }
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
+
+// 👁⚙ MOTOR DE PLANTILLAS ⚙👁
+configTemplateEngine(app);
+
 // USE == REGISTERING MIDDLEWARE
 // app es una instancia de express
 app.use(morgan('dev', { stream: log.stream })); // log all received request //constructores de funciones -> generan funciones (req, res)
