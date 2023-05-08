@@ -9,10 +9,11 @@ import cookieParser from 'cookie-parser';
 // library to log  http comunication
 import morgan from 'morgan';
 
-// importing sub routes
+/* importing sub routes
 import indexRouter from '@server/routes/index';
 import usersRouter from '@server/routes/users';
 import apiRouter from '@server/routes/api';
+*/
 
 // Setting Webpack modules
 import webpack from 'webpack';
@@ -25,7 +26,11 @@ import configTemplateEngine from './config/templateEngine';
 // importing  webpack configuration
 import webpackConfig from '../webpack.dev.config';
 
+// Importando winston logger
 import log from './config/winston';
+
+// Importando enrutador
+import router from './router';
 
 // creando variable del directorio raíz
 // eslint-disable-next-line
@@ -93,10 +98,13 @@ app.use(
 );
 // path para que sirva en diferentes
 
-// Registering routes
+/* Registering routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter); // Use permite definir un tramo de ruta
 app.use('/api', apiRouter);
+*/
+
+router.addRoutes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
