@@ -6,6 +6,7 @@ import 'materialize-css/dist/css/materialize.css';
 // importando scripts de Materialize
 import 'materialize-css/dist/js/materialize';
 /* eslint-enable */
+
 // inicializando scripts de materialize para interactividad
 M.AutoInit();
 
