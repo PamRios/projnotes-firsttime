@@ -55,6 +55,11 @@ if (nodeEnviroment === 'development') {
     'webpack-hot-middleware/client?reaload=true&timeout=1000',
     webpackConfig.entry,
   ];
+
+  /* Agregar el plugin a la configuración de desarrollo
+  de  webpack */
+  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+
   // Creating the bunbler
   const bundle = webpack(webpackConfig);
   // Enabling the express instances
