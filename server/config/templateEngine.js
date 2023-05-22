@@ -20,7 +20,7 @@ export default (app) => {
   /* Seleccionando el motor de plantillas
   que se integro anteriormente */
   app.set('view engine', 'hbs');
-  app.set('views', path.join(__dirname, '..', 'views'));
+  app.set('views', path.join(__dirname, '..', 'views')); // Ruta completa de render
 
   // Se retorna la instancia recbida como argumento
   return app;
