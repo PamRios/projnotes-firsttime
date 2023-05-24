@@ -18,11 +18,13 @@ import app from '../app';
 // Importing winston logger
 import log from '../config/winston';
 
-// const debug = Debug('projnotes');
-
+// Importando config Keys
+import configKeys from '../config/configKeys';
 /**
  * Get port from environment and store in Express.
  */
+const port = normalizePort(configKeys.port);
+// const debug = Debug('projnotes');
 
 /* Se asegura que el valor si es string lo convierte en numerico
 process.env.PORT -> objeto que simboliza el proceso de fabricacion
@@ -54,7 +56,7 @@ function normalizePort(val) {
   return false;
 }
 
-const port = normalizePort(process.env.PORT || '3000');
+// const port = normalizePort(process.env.PORT || '3000');
 // Store the port in the app
 app.set('port', port);
 
@@ -69,19 +71,16 @@ function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
-
+/* eslint-disable */
   const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
-
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       log.error(`${bind} requires elevated privileges`);
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       log.error(`${bind} is already in use`);
       process.exit(1);
-      break;
     default:
       throw error;
   }
