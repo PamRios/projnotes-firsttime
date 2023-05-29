@@ -13,18 +13,20 @@
 /* biblioteca interna del nucleo de node / modulo que permite la comunicaciones con un cliente vía
 el protocolo http facilita no  tener que programnar todo el servidor */
 import http from 'http';
-import app from '../app';
+// import app from '../app';
 
 // Importing winston logger
 import log from '../config/winston';
 
 // Importando config Keys
 import configKeys from '../config/configKeys';
+
+// Importando ODM
+import MongooseOdm from '../services/odm';
 /**
  * Get port from environment and store in Express.
  */
-/* eslint-disable */
-const port = normalizePort(configKeys.port);
+
 // const debug = Debug('projnotes');
 
 /* Se asegura que el valor si es string lo convierte en numerico
@@ -40,7 +42,7 @@ envi -> enviroment -> variables de entorno ->  (entorno == S.O.) */
 /**
  * Normalize a port into a number, string, or false.
  */
-/* eslint-disable */
+
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
@@ -57,13 +59,12 @@ function normalizePort(val) {
   return false;
 }
 
+const port = normalizePort(configKeys.port);
+
 // const port = normalizePort(process.env.PORT || '3000');
 // Store the port in the app
-app.set('port', port);
+// app.set('port', port);
 
-log.info('The server is created from the express instance');
-
-const server = http.createServer(app);
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -87,24 +88,62 @@ function onError(error) {
   }
 }
 
+// Rutina de arranque del servidor
+function startServer(dbConnection) {
+  import('../app').then((module) => {
+    // Importa el modulo por defecto
+    const app = module.default;
+    // Store the port info in the app
+    app.set('port', port);
+
+    // Create HTTP Server
+    log.info('The server is created from the express instance');
+    const server = http.createServer(app);
+
+    // Event Lister for HTTP server "listening" event
+    function onListening() {
+      const addr = server.address();
+      log.info(`✨✨ Listening on ${process.env.APP_URL}:${addr.port} ✨✨`);
+    }
+
+    // Attaching callbacks to events
+    server.on('error', onError);
+    server.on('listening', onListening);
+    // Store the dbConnection in the app
+    app.set('dbConnection', dbConnection);
+    // Starting Server 
+    server.listen(port);
+  })
+}
+
+// IIFE
+(async () =>{
+  // Creando la instancia del ODM
+  const mongooseOdm = new MongooseOdm(configKeys.mongoUrl);
+  // Conectando a la base de datos
+  try {
+    const dbConnection = await mongooseOdm.connect();
+    if (dbConnection) {
+      log.info(
+        `🛢 Conexión exitosa a la base de datos: ${configKeys.mongoUrl} 🛢`,
+      );
+      //Iniciando el servidor
+      startServer(dbConnection);
+    }
+  } catch (error){
+    log.error(`Error wwww.js ln 103: ${error.message}`);
+  }
+})();
+
 /**
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  const addr = server.address();
-  /* const bind = typeof addr === 'string'
-    ? `pipe ${addr}`
-    : `port ${addr.port}`; */
-  // debug(`URL DE APP ${process.env.APP_URL}`); //interpolación ${} backtics
-  log.info(`✨✨ Listening on ${process.env.APP_URL}:${addr.port} ✨✨`);
-}
+
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 // Specifying the port where the server would be listening
-server.listen(port);
-// Attaching callbacks to events
-server.on('error', onError);
-server.on('listening', onListening);
+
+
