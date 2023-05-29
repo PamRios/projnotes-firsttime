@@ -3,7 +3,7 @@ import homeRouter from './domains/home/home.router';
 // Importando enrutador de user
 import userRouter from './domains/user/user.router';
 // Importando enrutador de user
-import projectRouter from './domains/projects/project.router';
+import projectRouter from './domains/project/project.router';
 // Función que agrega rutas
 const addRoutes = (app) => {
   // Agregando enrutador de Home

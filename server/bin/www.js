@@ -23,6 +23,7 @@ import configKeys from '../config/configKeys';
 /**
  * Get port from environment and store in Express.
  */
+/* eslint-disable */
 const port = normalizePort(configKeys.port);
 // const debug = Debug('projnotes');
 
@@ -39,7 +40,7 @@ envi -> enviroment -> variables de entorno ->  (entorno == S.O.) */
 /**
  * Normalize a port into a number, string, or false.
  */
-
+/* eslint-disable */
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
