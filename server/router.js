@@ -11,7 +11,7 @@ const addRoutes = (app) => {
   // Agregando el enrutado user
   app.use('/user', userRouter);
   // Agregando el enrutador project
-  app.use('/', projectRouter);
+  app.use('/project', projectRouter);
 };
 
 // Exportando objeto

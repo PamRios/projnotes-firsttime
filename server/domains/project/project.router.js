@@ -10,12 +10,12 @@ const router = new Router();
 /* Enrutamos
 GET '/project
 */
-router.get('/project', projectController.showDashboard);
+router.get('/', projectController.showDashboard);
 
 /* Enrutamos
 GET '/projects/add'
 */
-router.get('/project/add', projectController.add);
+router.get('/add', projectController.add);
 
 // Exportando tramo de ruta
 export default router;

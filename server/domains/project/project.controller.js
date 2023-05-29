@@ -7,7 +7,7 @@ const showDashboard = (req, res) => {
 // Actions methods
 // GET "/project/add"
 const add = (req, res) => {
-  res.send('🛠 UNDER CONSTRCTION: GET /project/add');
+  res.render('project/addView');
 };
 
 // Controlador Project
