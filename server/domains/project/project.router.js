@@ -17,5 +17,8 @@ GET '/projects/add'
 */
 router.get('/add', projectController.add);
 
+// POST "/project/add"
+router.post('/add', projectController.addPost);
+
 // Exportando tramo de ruta
 export default router;
