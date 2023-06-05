@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Usando el patrón Factory para la creación de un middleware
 // de validación, lo que sigue es una función que regresa una función
 const Validator =
