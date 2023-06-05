@@ -5,8 +5,11 @@ import ProjectModel from './project.model';
 
 // Actions methods
 // GET "/project"
-const showDashboard = (req, res) => {
-  res.send('🛠 UNDER CONSTRCTION: GET /project');
+const showDashboard = async (req, res) => {
+  // Consultando todos los proyectos
+  const projects = await ProjectModel.find({}).lean().exec();
+  // Enviando los proyectos al cliente en JSON
+  res.render('project/dashboardView', { projects });
 };
 
 // Actions methods
@@ -38,8 +41,9 @@ const addPost = async (req, res) => {
      */
     const savedProject = await ProjectModel.create(project);
     // Se contesta la información del proyecto al cliente
-    log.info('Se entrega al cliente la información del proyecto cargado');
-    return res.status(200).json(savedProject);
+    log.info(`Se carga proyecto ${savedProject}`);
+    log.info('Se redirecciona el sitema a /project');
+    return res.redirect('/project');
   } catch (error) {
     log.error(
       'ln 53 project.controller: Error al guardar proyecto en la base de datos'
