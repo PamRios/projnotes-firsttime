@@ -2,6 +2,8 @@
 import createError from 'http-errors';
 // import the Express Librari
 import express from 'express';
+// Enable put and delete verbs
+import methodOverride from 'method-override';
 // is a Core-Node library to manage systems paths
 import path from 'path';
 // helps to parse client cookies
@@ -97,6 +99,8 @@ app.use((req, res, next)=>{
 app.use(express.json()); // Parse request data into json
 app.use(express.urlencoded({ extended: false })); // decode url info
 app.use(cookieParser()); // Parse client cookies into json
+// Enable post and delete verbs
+app.use(methodOverride('_method'));
 // Set up the static file server
 app.use(
   express.static(/* ruta de los estaticos */ path.join(__dirname, '../public'))
