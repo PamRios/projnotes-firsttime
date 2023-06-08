@@ -120,6 +120,19 @@ const editPut = async (req, res) => {
   }
 };
 
+// DELETE "/project/:id"
+const deleteProject = async (req, res) => {
+  // Extrayendo el id de los parametros
+  const { id } = req.params;
+  // usando el modelo para borrar proyecto
+  try {
+    const result = await ProjectModel.findByIdAndRemove(id);
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(200).json(error);
+  }
+};
+
 // Controlador Project
 export default {
   showDashboard,
@@ -127,4 +140,5 @@ export default {
   addPost,
   edit,
   editPut,
+  deleteProject,
 };
