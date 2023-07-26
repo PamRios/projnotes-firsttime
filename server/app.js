@@ -28,6 +28,9 @@ import configTemplateEngine from './config/templateEngine';
 // importing  webpack configuration
 import webpackConfig from '../webpack.dev.config';
 
+// Importando configurador de sesiones
+import configSessions from './config/configSessions';
+
 // Importando winston logger
 import log from './config/winston';
 
@@ -101,6 +104,8 @@ app.use(express.urlencoded({ extended: false })); // decode url info
 app.use(cookieParser()); // Parse client cookies into json
 // Enable post and delete verbs
 app.use(methodOverride('_method'));
+// Importando configurador de sesiones
+configSessions(app);
 // Set up the static file server
 app.use(
   express.static(/* ruta de los estaticos */ path.join(__dirname, '../public'))

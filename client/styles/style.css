@@ -1,13 +1,13 @@
-body{
+body {
     font-size: 14px;
     font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
 }
 
-a{
+a {
     color: #00B7FF
 }
 
-h1{
+h1 {
     color: teal;
 }
 
@@ -15,4 +15,11 @@ h1{
     color: #000;
     text-shadow: 2px 2px 4px rgb(1, 1, 1);
     font-size: 24px;
+}
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 70%;
+    left: 40%;
 }
